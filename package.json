@@ -1,0 +1,22 @@
+{
+  "name": "antable",
+  "version": "0.2.0",
+  "description": "an-table",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hbrls/antable.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hbrls/antable/issues"
+  },
+  "homepage": "https://github.com/hbrls/antable#readme"
+}
