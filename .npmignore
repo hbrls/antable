@@ -1,0 +1,14 @@
+.DS_Store
+.npmignore
+
+node_modules/
+
+build/
+example/
+src/
+tests/
+
+.babelrc
+.editorconfig
+.eslintrc
+webpack.config.js

@@ -1,0 +1,27 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "router": true
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.js"
+      }
+    }
+  },
+  "rules": {
+    "func-names": 0,
+    "import/extensions": 0,
+    "max-len": 0,
+    "no-console": 0,
+    "no-else-return": 0,
+    "no-underscore-dangle": 0,
+    "prefer-const": 0,
+    "react/prop-types": 0
+  }
+}
