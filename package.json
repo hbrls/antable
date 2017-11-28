@@ -2,7 +2,7 @@
   "name": "@lattebank/antable",
   "version": "0.0.2",
   "description": "an-table",
-  "main": "dist/ANTable.common.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --config build/webpack.config.js",
     "build": "node build/build.js"
