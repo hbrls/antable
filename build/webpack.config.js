@@ -7,11 +7,11 @@ const HOT_SERVER = 'webpack/hot/only-dev-server';
 
 module.exports = {
   entry: {
-    index: [DEV_SERVER, HOT_SERVER, './example/index']
+    simple: [DEV_SERVER, HOT_SERVER, './docs/src/simple'],
   },
 
   resolve: {
-    modules: [path.resolve(__dirname, 'example'), 'node_modules'],
+    modules: [path.resolve(__dirname, 'docs/src'), 'node_modules'],
     extensions: ['.js', '.jsx'],
   },
 
@@ -46,7 +46,7 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     port: 3001,
-    contentBase: path.join(__dirname, 'example'),
+    contentBase: path.join(__dirname, '../docs'),
     historyApiFallback: true,
     hot: true,
     stats: true,
