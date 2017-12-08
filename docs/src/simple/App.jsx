@@ -22,7 +22,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/users.json').then(({ data: { users } }) => this.setState({
+    axios.get('./api/users.json').then(({ data: { users } }) => this.setState({
       users: Immutable.fromJS(users),
       companies: Immutable.fromJS(users),
       loading: false,

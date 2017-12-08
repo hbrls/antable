@@ -1,5 +1,5 @@
 import React from 'react';
-import ANTable from '../../../src/ANTable';
+import ANTable from '../../../src/ANTable.jsx';
 
 
 export default function UserTable(props) {

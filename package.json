@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --config build/webpack.config.js",
+    "dist": "NODE_ENV=production webpack --config build/webpack.config.dist.js",
     "build": "node build/build.js"
   },
   "author": "徐帅哲<xushuaizhe@lattebank.com>",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "antd": "2.12.6",
+    "assets-webpack-plugin": "3.5.1",
     "axios": "0.16.2",
     "babel-core": "6.24.1",
     "babel-eslint": "7.2.3",
@@ -32,6 +34,7 @@
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "4.0.0",
     "eslint-plugin-react": "6.10.3",
+    "extract-text-webpack-plugin": "2.1.0",
     "immutable": "3.8.1",
     "react": "15.4.2",
     "react-dom": "15.4.2",

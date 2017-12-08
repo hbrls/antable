@@ -70,6 +70,7 @@ export default class ANTable extends Component {
 
   handleTableChange(pagination, filters, sorter) {
     const caller = getCaller();
+    // console.log(caller);
     if (caller.indexOf('handlePageChange') > -1) {
       this.preserve({ page: pagination.current });
     } else {
