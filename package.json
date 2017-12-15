@@ -9,6 +9,7 @@
     "build": "node build/build.js"
   },
   "author": "徐帅哲<xushuaizhe@lattebank.com>",
+  "license": "MIT",
   "peerDependencies": {
     "antd": "~2",
     "immutable": "~3",
