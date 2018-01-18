@@ -1,7 +1,7 @@
 antable
 ==
 
-an-table
+another table
 
 Examples
 ==

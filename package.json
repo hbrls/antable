@@ -1,6 +1,6 @@
 {
   "name": "@lattebank/antable",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "an-table",
   "main": "dist/index.js",
   "scripts": {

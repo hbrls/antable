@@ -1,4 +1,4 @@
-/*! @lattebank/antable v0.0.2 (c) 2017 */
+/*! @lattebank/antable v0.0.3 (c) 2017 */
 'use strict';
 
 function getPreserve(page) {

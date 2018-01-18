@@ -1,5 +1,5 @@
 antable
 ==
 
-an-table
+another table
 

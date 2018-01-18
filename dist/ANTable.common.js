@@ -1,4 +1,4 @@
-/*! @lattebank/antable v0.0.2 (c) 2017 */
+/*! @lattebank/antable v0.0.3 (c) 2017 */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -6,6 +6,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var React = require('react');
 var React__default = _interopDefault(React);
 var Table = _interopDefault(require('antd/lib/table'));
+var Popover = _interopDefault(require('antd/lib/popover'));
 var Input = _interopDefault(require('antd/lib/input'));
 
 function Query(id, query) {
@@ -76,6 +77,8 @@ Query.prototype.next = function () {
 function translate(props) {
   var dataSource = props.dataSource.toJS ? props.dataSource.toJS() : props.dataSource;
   var columns = props.columns;
+
+  var searchColumns = columns.filter(function (c) { return c.search === 'string'; }).map(function (c) { return c; });
 
   var computedColumns = columns.filter(function (c) { return c.computed; }).map(function (c) { return c; });
   if (computedColumns.length > 0) {
@@ -153,9 +156,32 @@ function translate(props) {
     return col;
   });
 
+  var rowKey = props.rowKey;
+  var create = props.create;
+  var edit = props.edit;
+  var remove = props.remove;
+
+  // FIXME:
+  if (create && edit && remove) {
+    columns.push({
+      title: React__default.createElement( 'a', { className: "ant-btn ant-btn-sm ant-btn-primary", onClick: create }, "创建"),
+      key: 'operations',
+      className: 'text-right',
+      render: function (text, record) { return (
+        React__default.createElement( 'div', null,
+          React__default.createElement( 'a', { className: "ant-btn ant-btn-sm", onClick: function () { return edit(record[rowKey]); } }, "编辑"),
+          React__default.createElement( 'span', { className: "ant-divider ant-divider-space-only" }),
+          React__default.createElement( Popover, { content: React__default.createElement( 'a', { className: "ant-btn ant-btn-sm", onClick: function () { return remove(record[rowKey]); } }, "删除"), title: "确认删除", trigger: "hover", placement: "right" },
+            React__default.createElement( 'a', { className: "ant-btn ant-btn-sm" }, "删除")
+          )
+        )); },
+    });
+  }
+
   return {
     dataSource: dataSource,
     columns: columns,
+    searchColumns: searchColumns,
     fields: fields,
     _query: _query,
     _filters: _filters,
@@ -164,7 +190,8 @@ function translate(props) {
 
 /* USE AT YOUR OWN RISK */
 var CALLER_PRE_POST = /^\s+at |\s+\(.*$|@.*$/ig;
-var FLAG = /handleTableChange$/;
+var PREV_FLAG = /handleTableChange$/;
+var SELF_FLAG = /handlePageChange/;
 
 
 function getCaller() {
@@ -174,14 +201,20 @@ function getCaller() {
   stack.unshift('UNSHIFT');
 
   while (stack.shift()) {
+    if (stack.length === 0) {
+      return 'MAGIC GET_CALLER PASS';
+    }
+
     var caller = stack[0].replace(CALLER_PRE_POST, '');
-    if (FLAG.test(caller)) {
+    if (PREV_FLAG.test(caller)) {
       var next = stack[1].replace(CALLER_PRE_POST, '');
       if (next === caller || next === '[native code]') {
         stack.shift();
         next = stack[1].replace(CALLER_PRE_POST, '');
       }
       return next;
+    } else if (SELF_FLAG.test(caller)) {
+      return caller.replace(CALLER_PRE_POST, '');
     }
   }
 
@@ -264,10 +297,7 @@ var ANTable = (function (Component$$1) {
   function ANTable(props) {
     Component$$1.call(this, props);
 
-    this.state = Object.assign({}, translate(props), {
-      pageSize: 10,
-      searchColumns: props.columns.filter(function (c) { return c.search === 'string'; }).map(function (c) { return c; }),
-    });
+    this.state = translate(props);
 
     this.handleKeywordChange = this.handleKeywordChange.bind(this);
     this.handleTableChange = this.handleTableChange.bind(this);
@@ -334,6 +364,7 @@ var ANTable = (function (Component$$1) {
 
   ANTable.prototype.handleTableChange = function handleTableChange (pagination, filters, sorter) {
     var caller = getCaller();
+    // console.log(caller);
     if (caller.indexOf('handlePageChange') > -1) {
       this.preserve({ page: pagination.current });
     } else {
@@ -498,6 +529,7 @@ var ANTable = (function (Component$$1) {
 ANTable.defaultProps = {
   controlled: false,
   pagination: true,
+  pageSize: 10,
   size: 'middle',
   id: '_antable',
   query: {},

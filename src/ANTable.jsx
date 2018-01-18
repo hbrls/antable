@@ -10,10 +10,7 @@ export default class ANTable extends Component {
   constructor(props) {
     super(props);
 
-    this.state = Object.assign({}, translate(props), {
-      pageSize: 10,
-      searchColumns: props.columns.filter(c => c.search === 'string').map(c => c),
-    });
+    this.state = translate(props);
 
     this.handleKeywordChange = this.handleKeywordChange.bind(this);
     this.handleTableChange = this.handleTableChange.bind(this);
@@ -221,6 +218,7 @@ export default class ANTable extends Component {
 ANTable.defaultProps = {
   controlled: false,
   pagination: true,
+  pageSize: 10,
   size: 'middle',
   id: '_antable',
   query: {},
