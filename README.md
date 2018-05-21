@@ -1,4 +1,4 @@
-antable
+atable
 ==
 
 another table

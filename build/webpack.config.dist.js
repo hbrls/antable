@@ -4,7 +4,7 @@ const AssetsPlugin = require('assets-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 
-const PUBLIC_PATH = '/antable/dist/';
+const PUBLIC_PATH = '/atable/dist/';
 
 
 module.exports = {

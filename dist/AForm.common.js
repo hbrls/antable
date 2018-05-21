@@ -1,4 +1,4 @@
-/*! @lattebank/antable v0.0.3 (c) 2017 */
+/*! @lattebank/atable v0.0.4 (c) 2017-present */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -16,18 +16,18 @@ var FormItem = Form.Item;
 var Option = Select.Option;
 
 
-var ANForm = (function (Component$$1) {
-  function ANForm(props) {
+var AForm = (function (Component$$1) {
+  function AForm(props) {
     Component$$1.call(this, props);
 
     this.submit = this.submit.bind(this);
   }
 
-  if ( Component$$1 ) ANForm.__proto__ = Component$$1;
-  ANForm.prototype = Object.create( Component$$1 && Component$$1.prototype );
-  ANForm.prototype.constructor = ANForm;
+  if ( Component$$1 ) AForm.__proto__ = Component$$1;
+  AForm.prototype = Object.create( Component$$1 && Component$$1.prototype );
+  AForm.prototype.constructor = AForm;
 
-  ANForm.prototype.submit = function submit () {
+  AForm.prototype.submit = function submit () {
     var ref = this.props;
     var rowKey = ref.rowKey;
     var columns = ref.columns;
@@ -45,7 +45,7 @@ var ANForm = (function (Component$$1) {
     this.props.submit(command);
   };
 
-  ANForm.prototype.render = function render () {
+  AForm.prototype.render = function render () {
     var ref = this.props;
     var rowKey = ref.rowKey;
     var columns = ref.columns;
@@ -116,10 +116,10 @@ var ANForm = (function (Component$$1) {
     }
   };
 
-  return ANForm;
+  return AForm;
 }(React.Component));
 
 
-var Wrapped = Form.create()(ANForm);
+var Wrapped = Form.create()(AForm);
 
 module.exports = Wrapped;

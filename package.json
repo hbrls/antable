@@ -1,7 +1,7 @@
 {
-  "name": "@lattebank/antable",
-  "version": "0.0.3",
-  "description": "an-table",
+  "name": "@lattebank/atable",
+  "version": "0.0.4",
+  "description": "another table",
   "main": "dist/index.js",
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --config build/webpack.config.js",

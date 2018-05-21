@@ -1,4 +1,4 @@
-/*! @lattebank/antable v0.0.3 (c) 2017 */
+/*! @lattebank/atable v0.0.4 (c) 2017-present */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -12,7 +12,7 @@ var Input = _interopDefault(require('antd/lib/input'));
 function Query(id, query) {
   if (!query) {
     query = id; // eslint-disable-line no-param-reassign
-    id = '_antable';  // eslint-disable-line no-param-reassign
+    id = '_atable';  // eslint-disable-line no-param-reassign
   }
 
   this.id = id;
@@ -293,8 +293,8 @@ var SearchBar = (function (Component$$1) {
   return SearchBar;
 }(React.Component));
 
-var ANTable = (function (Component$$1) {
-  function ANTable(props) {
+var ATable = (function (Component$$1) {
+  function ATable(props) {
     Component$$1.call(this, props);
 
     this.state = translate(props);
@@ -305,17 +305,17 @@ var ANTable = (function (Component$$1) {
     this.search = this.search.bind(this);
   }
 
-  if ( Component$$1 ) ANTable.__proto__ = Component$$1;
-  ANTable.prototype = Object.create( Component$$1 && Component$$1.prototype );
-  ANTable.prototype.constructor = ANTable;
+  if ( Component$$1 ) ATable.__proto__ = Component$$1;
+  ATable.prototype = Object.create( Component$$1 && Component$$1.prototype );
+  ATable.prototype.constructor = ATable;
 
-  ANTable.prototype.componentWillReceiveProps = function componentWillReceiveProps (nextProps) {
+  ATable.prototype.componentWillReceiveProps = function componentWillReceiveProps (nextProps) {
     if (nextProps.dataSource !== this.props.dataSource || nextProps.query !== this.props.query) {
       this.setState(translate(nextProps));
     }
   };
 
-  ANTable.prototype.getNextQuery = function getNextQuery (delta) {
+  ATable.prototype.getNextQuery = function getNextQuery (delta) {
     if ( delta === void 0 ) delta = {};
 
     var ref = this.state;
@@ -358,11 +358,11 @@ var ANTable = (function (Component$$1) {
     return next;
   };
 
-  ANTable.prototype.handleKeywordChange = function handleKeywordChange (keyword) {
+  ATable.prototype.handleKeywordChange = function handleKeywordChange (keyword) {
     this.preserve({ keyword: keyword, page: 1 });
   };
 
-  ANTable.prototype.handleTableChange = function handleTableChange (pagination, filters, sorter) {
+  ATable.prototype.handleTableChange = function handleTableChange (pagination, filters, sorter) {
     var caller = getCaller();
     // console.log(caller);
     if (caller.indexOf('handlePageChange') > -1) {
@@ -384,7 +384,7 @@ var ANTable = (function (Component$$1) {
     }
   };
 
-  ANTable.prototype.search = function search () {
+  ATable.prototype.search = function search () {
     var ref = this.props;
     var controlled = ref.controlled;
     var ref$1 = this.state;
@@ -438,7 +438,7 @@ var ANTable = (function (Component$$1) {
     return dataSource;
   };
 
-  ANTable.prototype.preserve = function preserve (delta) {
+  ATable.prototype.preserve = function preserve (delta) {
     var ref = this.getNextQuery(delta);
     var page = ref.page;
     var keyword = ref.keyword;
@@ -465,7 +465,7 @@ var ANTable = (function (Component$$1) {
     this.props.preserve(this.props.id, query.join(';'));
   };
 
-  ANTable.prototype.renderSearchBar = function renderSearchBar () {
+  ATable.prototype.renderSearchBar = function renderSearchBar () {
     if (this.state.searchColumns.length > 0) {
       var ref = this.getNextQuery();
       var keyword = ref.keyword;
@@ -483,7 +483,7 @@ var ANTable = (function (Component$$1) {
     }
   };
 
-  ANTable.prototype.renderTable = function renderTable () {
+  ATable.prototype.renderTable = function renderTable () {
     var ref = this.state;
     var pageSize = ref.pageSize;
     var columns = ref.columns;
@@ -514,7 +514,7 @@ var ANTable = (function (Component$$1) {
     return React__default.createElement( Table, props);
   };
 
-  ANTable.prototype.render = function render () {
+  ATable.prototype.render = function render () {
     return (
       React__default.createElement( 'div', null,
         this.renderSearchBar(),
@@ -523,24 +523,24 @@ var ANTable = (function (Component$$1) {
     );
   };
 
-  return ANTable;
+  return ATable;
 }(React.Component));
 
-ANTable.defaultProps = {
+ATable.defaultProps = {
   controlled: false,
   pagination: true,
   pageSize: 10,
   size: 'middle',
-  id: '_antable',
+  id: '_atable',
   query: {},
 };
 
 
 /* shortcut */
-ANTable.nextQuery = function (form) {
+ATable.nextQuery = function (form) {
   var sq = new Query();
   sq.merge(form);
   return sq.next();
 };
 
-module.exports = ANTable;
+module.exports = ATable;

@@ -11,7 +11,7 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 
 
-class ANForm extends Component {
+class AForm extends Component {
   constructor(props) {
     super(props);
 
@@ -106,7 +106,7 @@ class ANForm extends Component {
 }
 
 
-const Wrapped = Form.create()(ANForm);
+const Wrapped = Form.create()(AForm);
 
 
 export default Wrapped;

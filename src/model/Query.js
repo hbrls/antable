@@ -1,7 +1,7 @@
 export default function Query(id, query) {
   if (!query) {
     query = id; // eslint-disable-line no-param-reassign
-    id = '_antable';  // eslint-disable-line no-param-reassign
+    id = '_atable';  // eslint-disable-line no-param-reassign
   }
 
   this.id = id;

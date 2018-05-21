@@ -1,4 +1,4 @@
-/*! @lattebank/antable v0.0.3 (c) 2017 */
+/*! @lattebank/atable v0.0.4 (c) 2017-present */
 'use strict';
 
 function getPreserve(page) {
@@ -19,7 +19,7 @@ function getPreserve(page) {
   };
 }
 
-function antable(page) {
+function atable(page) {
   var props = {};
 
   props.preserve = getPreserve(page);
@@ -29,4 +29,4 @@ function antable(page) {
   return props;
 }
 
-module.exports = antable;
+module.exports = atable;

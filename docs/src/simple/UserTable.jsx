@@ -1,5 +1,5 @@
 import React from 'react';
-import ANTable from '../../../src/ANTable.jsx';
+import ATable from '../../../src/ATable.jsx';
 
 
 export default function UserTable(props) {
@@ -42,5 +42,5 @@ export default function UserTable(props) {
     },
   ];
 
-  return <ANTable id="User" columns={columns} rowKey="id" {...props} />;
+  return <ATable id="User" columns={columns} rowKey="id" {...props} />;
 }

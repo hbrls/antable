@@ -1,10 +1,10 @@
-var ANTable = require('./ANTable.common.js');
-var ANForm = require('./ANForm.common.js');
-var antable = require('./antable.js');
+var ATable = require('./ATable.common.js');
+var AForm = require('./AForm.common.js');
+var atable = require('./atable.js');
 
 
-antable.ANTable = ANTable;
-antable.ANForm = ANForm;
+atable.ATable = ATable;
+atable.AForm = AForm;
 
 
-module.exports = antable;
+module.exports = atable;

@@ -6,7 +6,7 @@ import getCaller from './getCaller.js';
 import SearchBar from './SearchBar.jsx';
 
 
-export default class ANTable extends Component {
+export default class ATable extends Component {
   constructor(props) {
     super(props);
 
@@ -215,18 +215,18 @@ export default class ANTable extends Component {
 }
 
 
-ANTable.defaultProps = {
+ATable.defaultProps = {
   controlled: false,
   pagination: true,
   pageSize: 10,
   size: 'middle',
-  id: '_antable',
+  id: '_atable',
   query: {},
 };
 
 
 /* shortcut */
-ANTable.nextQuery = function (form) {
+ATable.nextQuery = function (form) {
   const sq = new Query();
   sq.merge(form);
   return sq.next();

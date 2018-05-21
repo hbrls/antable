@@ -2,20 +2,20 @@ const path = require('path');
 const buble = require('rollup-plugin-buble');
 const version = process.env.VERSION || require('../package.json').version;
 
-const banner = '/*! @lattebank/antable v' + version + ' (c) 2017 */';
+const banner = '/*! @lattebank/atable v' + version + ' (c) 2017-present */';
 
 const builds = {
-  'antable': {
-    input: path.resolve(__dirname, '../src/antable.js'),
-    output: path.resolve(__dirname, '../dist/antable.js'),
+  'atable': {
+    input: path.resolve(__dirname, '../src/atable.js'),
+    output: path.resolve(__dirname, '../dist/atable.js'),
     external: [
     ],
     format: 'cjs',
     banner,
   },
-  'ANTable': {
-    input: path.resolve(__dirname, '../src/ANTable.jsx'),
-    output: path.resolve(__dirname, '../dist/ANTable.common.js'),
+  'ATable': {
+    input: path.resolve(__dirname, '../src/ATable.jsx'),
+    output: path.resolve(__dirname, '../dist/ATable.common.js'),
     external: [
       'react',
       'antd/lib/button',
@@ -30,9 +30,9 @@ const builds = {
     format: 'cjs',
     banner,
   },
-  'ANForm': {
-    input: path.resolve(__dirname, '../src/ANForm.jsx'),
-    output: path.resolve(__dirname, '../dist/ANForm.common.js'),
+  'AForm': {
+    input: path.resolve(__dirname, '../src/AForm.jsx'),
+    output: path.resolve(__dirname, '../dist/AForm.common.js'),
     external: [
       'react',
       'antd/lib/button',
@@ -57,7 +57,7 @@ function genConfig(opts) {
     external: opts.external,
     format: opts.format,
     banner: opts.banner,
-    name: 'ANTable',
+    name: 'ATable',
     plugins: [
       buble(),
     ]
