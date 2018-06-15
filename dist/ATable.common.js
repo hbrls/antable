@@ -1,4 +1,4 @@
-/*! @lattebank/atable v0.0.4 (c) 2017-present */
+/*! @lattebank/atable v0.0.5 (c) 2017-present */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -525,6 +525,7 @@ var ATable = (function (Component$$1) {
 
   return ATable;
 }(React.Component));
+
 
 ATable.defaultProps = {
   controlled: false,

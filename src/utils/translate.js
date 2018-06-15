@@ -1,5 +1,3 @@
-import React from 'react';
-import Popover from 'antd/lib/popover';
 import Query from '../model/Query.js';
 
 
@@ -84,25 +82,6 @@ export default function translate(props) {
 
     return col;
   });
-
-  const { rowKey, create, edit, remove } = props;
-
-  // FIXME:
-  if (create && edit && remove) {
-    columns.push({
-      title: <a className="ant-btn ant-btn-sm ant-btn-primary" onClick={create}>创建</a>,
-      key: 'operations',
-      className: 'text-right',
-      render: (text, record) => (
-        <div>
-          <a className="ant-btn ant-btn-sm" onClick={() => edit(record[rowKey])}>编辑</a>
-          <span className="ant-divider ant-divider-space-only" />
-          <Popover content={<a className="ant-btn ant-btn-sm" onClick={() => remove(record[rowKey])}>删除</a>} title="确认删除" trigger="hover" placement="right">
-            <a className="ant-btn ant-btn-sm">删除</a>
-          </Popover>
-        </div>),
-    });
-  }
 
   return {
     dataSource,

@@ -6,7 +6,7 @@ import getCaller from './getCaller.js';
 import SearchBar from './SearchBar.jsx';
 
 
-export default class ATable extends Component {
+class ATable extends Component {
   constructor(props) {
     super(props);
 
@@ -231,3 +231,6 @@ ATable.nextQuery = function (form) {
   sq.merge(form);
   return sq.next();
 };
+
+
+export default ATable;
