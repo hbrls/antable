@@ -1,4 +1,4 @@
-/*! @lattebank/atable v0.0.5 (c) 2017-present */
+/*! @lattebank/atable v0.1.0 (c) 2017-present */
 'use strict';
 
 function getPreserve(page) {

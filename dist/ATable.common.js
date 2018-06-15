@@ -1,12 +1,14 @@
-/*! @lattebank/atable v0.0.5 (c) 2017-present */
+/*! @lattebank/atable v0.1.0 (c) 2017-present */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var React = require('react');
 var React__default = _interopDefault(React);
+var reactRouter = require('react-router');
+var reactRedux = require('react-redux');
+var routerRedux = _interopDefault(require('react-router-redux'));
 var Table = _interopDefault(require('antd/lib/table'));
-var Popover = _interopDefault(require('antd/lib/popover'));
 var Input = _interopDefault(require('antd/lib/input'));
 
 function Query(id, query) {
@@ -90,7 +92,7 @@ function translate(props) {
     });
   }
 
-  var prev = new Query(props.id, props.query);
+  var prev = new Query(props.id, props.location.query);
 
   var _query = {
     pg: prev.getField('pg'),
@@ -155,28 +157,6 @@ function translate(props) {
 
     return col;
   });
-
-  var rowKey = props.rowKey;
-  var create = props.create;
-  var edit = props.edit;
-  var remove = props.remove;
-
-  // FIXME:
-  if (create && edit && remove) {
-    columns.push({
-      title: React__default.createElement( 'a', { className: "ant-btn ant-btn-sm ant-btn-primary", onClick: create }, "创建"),
-      key: 'operations',
-      className: 'text-right',
-      render: function (text, record) { return (
-        React__default.createElement( 'div', null,
-          React__default.createElement( 'a', { className: "ant-btn ant-btn-sm", onClick: function () { return edit(record[rowKey]); } }, "编辑"),
-          React__default.createElement( 'span', { className: "ant-divider ant-divider-space-only" }),
-          React__default.createElement( Popover, { content: React__default.createElement( 'a', { className: "ant-btn ant-btn-sm", onClick: function () { return remove(record[rowKey]); } }, "删除"), title: "确认删除", trigger: "hover", placement: "right" },
-            React__default.createElement( 'a', { className: "ant-btn ant-btn-sm" }, "删除")
-          )
-        )); },
-    });
-  }
 
   return {
     dataSource: dataSource,
@@ -302,6 +282,7 @@ var ATable = (function (Component$$1) {
     this.handleKeywordChange = this.handleKeywordChange.bind(this);
     this.handleTableChange = this.handleTableChange.bind(this);
     this.preserve = this.preserve.bind(this);
+    this._preserve = this._preserve.bind(this);
     this.search = this.search.bind(this);
   }
 
@@ -310,7 +291,7 @@ var ATable = (function (Component$$1) {
   ATable.prototype.constructor = ATable;
 
   ATable.prototype.componentWillReceiveProps = function componentWillReceiveProps (nextProps) {
-    if (nextProps.dataSource !== this.props.dataSource || nextProps.query !== this.props.query) {
+    if (nextProps.dataSource !== this.props.dataSource || nextProps.location.query !== this.props.location.query) {
       this.setState(translate(nextProps));
     }
   };
@@ -462,7 +443,25 @@ var ATable = (function (Component$$1) {
       query.push(("sb|" + sortBy));
     }
 
-    this.props.preserve(this.props.id, query.join(';'));
+    // this.props.preserve(this.props.id, query.join(';'));
+    this._preserve(this.props.id, query.join(';'));
+  };
+
+  ATable.prototype._preserve = function _preserve (id, search) {
+    // dva only, no arena
+    var ref = this.props.location;
+    var pathname = ref.pathname;
+    var query = ref.query;
+
+    if (search) {
+      query[id] = search;
+    } else {
+      delete query[id];
+    }
+
+    var location = { pathname: pathname, query: query };
+
+    this.props.dispatch(routerRedux.push(location));
   };
 
   ATable.prototype.renderSearchBar = function renderSearchBar () {
@@ -533,7 +532,6 @@ ATable.defaultProps = {
   pageSize: 10,
   size: 'middle',
   id: '_atable',
-  query: {},
 };
 
 
@@ -544,4 +542,7 @@ ATable.nextQuery = function (form) {
   return sq.next();
 };
 
-module.exports = ATable;
+
+var ATable$1 = reactRedux.connect()(reactRouter.withRouter(ATable));
+
+module.exports = ATable$1;

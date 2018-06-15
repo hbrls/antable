@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import routerRedux from 'react-router-redux';
 import Table from 'antd/lib/table';
 import translate from './utils/translate.js';
 import Query from './model/Query';
@@ -15,11 +18,12 @@ class ATable extends Component {
     this.handleKeywordChange = this.handleKeywordChange.bind(this);
     this.handleTableChange = this.handleTableChange.bind(this);
     this.preserve = this.preserve.bind(this);
+    this._preserve = this._preserve.bind(this);
     this.search = this.search.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.dataSource !== this.props.dataSource || nextProps.query !== this.props.query) {
+    if (nextProps.dataSource !== this.props.dataSource || nextProps.location.query !== this.props.location.query) {
       this.setState(translate(nextProps));
     }
   }
@@ -156,7 +160,23 @@ class ATable extends Component {
       query.push(`sb|${sortBy}`);
     }
 
-    this.props.preserve(this.props.id, query.join(';'));
+    // this.props.preserve(this.props.id, query.join(';'));
+    this._preserve(this.props.id, query.join(';'));
+  }
+
+  _preserve(id, search) {
+    // dva only, no arena
+    const { pathname, query } = this.props.location;
+
+    if (search) {
+      query[id] = search;
+    } else {
+      delete query[id];
+    }
+
+    const location = { pathname, query };
+
+    this.props.dispatch(routerRedux.push(location));
   }
 
   renderSearchBar() {
@@ -221,7 +241,6 @@ ATable.defaultProps = {
   pageSize: 10,
   size: 'middle',
   id: '_atable',
-  query: {},
 };
 
 
@@ -233,4 +252,4 @@ ATable.nextQuery = function (form) {
 };
 
 
-export default ATable;
+export default connect()(withRouter(ATable));

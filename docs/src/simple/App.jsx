@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios'; // eslint-disable-line import/no-extraneous-dependencies
 import Immutable from 'immutable';
-import getPreserve from '../common/getPreserve';
-import getQuery from '../common/getQuery';
+// import getPreserve from '../common/getPreserve';
+// import getQuery from '../common/getQuery';
 import UserTable from './UserTable';
-import CompanyTable from './CompanyTable';
+// import CompanyTable from './CompanyTable';
 
 
 export default class App extends Component {
@@ -18,7 +18,7 @@ export default class App extends Component {
       trigger: 0,
     };
 
-    this.preserve = getPreserve().bind(this);
+    // this.preserve = getPreserve().bind(this);
   }
 
   componentDidMount() {
@@ -29,21 +29,23 @@ export default class App extends Component {
     }));
   }
 
-  preserve() {
-    console.log(this);
-  }
+  // preserve() {
+  //   console.log(this);
+  // }
 
   render() {
-    const { loading } = this.state;
-    const { users, companies } = this.state;
+    const { store, router } = this.props;
+    // console.log(store, router);
 
-    const query = getQuery(this.props.router.getRoute(0), 'queryKey');
+    const { loading } = this.state;
+    const { users } = this.state;
+
+    // const query = getQuery(this.props.router.getRoute(0), 'queryKey');
     // console.log(query);
 
     return (
       <div>
-        <UserTable dataSource={users} query={query} preserve={this.preserve} loading={loading} />
-        <CompanyTable dataSource={companies} query={query} preserve={this.preserve} loading={loading} />
+        <UserTable store={store} router={router} dataSource={users} loading={loading} />
       </div>
     );
   }

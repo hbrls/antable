@@ -17,7 +17,7 @@ export default function translate(props) {
     });
   }
 
-  const prev = new Query(props.id, props.query);
+  const prev = new Query(props.id, props.location.query);
 
   const _query = {
     pg: prev.getField('pg'),

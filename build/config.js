@@ -18,6 +18,9 @@ const builds = {
     output: path.resolve(__dirname, '../dist/ATable.common.js'),
     external: [
       'react',
+      'react-router',
+      'react-redux',
+      'react-router-redux',
       'antd/lib/button',
       'antd/lib/input',
       'antd/lib/select',
