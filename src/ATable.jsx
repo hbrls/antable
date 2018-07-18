@@ -245,6 +245,11 @@ ATable.defaultProps = {
 
 
 /* shortcut */
+ATable.parseQuery = function (qs = '') {
+  const [id, query] = qs.split('=');
+  return new Query(id, query);
+}
+
 ATable.nextQuery = function (form) {
   const sq = new Query();
   sq.merge(form);

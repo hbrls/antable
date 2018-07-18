@@ -1,4 +1,4 @@
-/*! @lattebank/atable v0.1.0 (c) 2017-present */
+/*! @lattebank/atable v0.1.1 (c) 2017-present */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -536,6 +536,15 @@ ATable.defaultProps = {
 
 
 /* shortcut */
+ATable.parseQuery = function (qs) {
+  if ( qs === void 0 ) qs = '';
+
+  var ref = qs.split('=');
+  var id = ref[0];
+  var query = ref[1];
+  return new Query(id, query);
+};
+
 ATable.nextQuery = function (form) {
   var sq = new Query();
   sq.merge(form);
