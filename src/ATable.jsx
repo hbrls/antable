@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import routerRedux from 'react-router-redux';
+import { push } from 'react-router-redux';
 import Table from 'antd/lib/table';
 import translate from './utils/translate.js';
 import Query from './model/Query';
@@ -176,7 +176,7 @@ class ATable extends Component {
 
     const location = { pathname, query };
 
-    this.props.dispatch(routerRedux.push(location));
+    this.props.dispatch(push(location));
   }
 
   renderSearchBar() {
@@ -248,7 +248,7 @@ ATable.defaultProps = {
 ATable.parseQuery = function (qs = '') {
   const [id, query] = qs.split('=');
   return new Query(id, query);
-}
+};
 
 ATable.nextQuery = function (form) {
   const sq = new Query();

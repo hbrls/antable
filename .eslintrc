@@ -5,7 +5,8 @@
     "browser": true
   },
   "globals": {
-    "router": true
+    "router": true,
+    "head": true
   },
   "settings": {
     "import/resolver": {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'; // eslint-disable-line import/no-extraneous-dependencies
 import Immutable from 'immutable';
-// import getPreserve from '../common/getPreserve';
 // import getQuery from '../common/getQuery';
 import UserTable from './UserTable';
 // import CompanyTable from './CompanyTable';
@@ -17,21 +16,19 @@ export default class App extends Component {
       companies: Immutable.fromJS([]),
       trigger: 0,
     };
-
-    // this.preserve = getPreserve().bind(this);
   }
 
   componentDidMount() {
+    head.bus.on('trigger', () => {
+      this.setState({ trigger: this.state.trigger + 1 });
+    });
+
     axios.get('./api/users.json').then(({ data: { users } }) => this.setState({
       users: Immutable.fromJS(users),
-      companies: Immutable.fromJS(users),
+      // companies: Immutable.fromJS(users),
       loading: false,
     }));
   }
-
-  // preserve() {
-  //   console.log(this);
-  // }
 
   render() {
     const { store, router } = this.props;
@@ -44,7 +41,7 @@ export default class App extends Component {
     // console.log(query);
 
     return (
-      <div>
+      <div className={`trigger-${this.state.trigger}`}>
         <UserTable store={store} router={router} dataSource={users} loading={loading} />
       </div>
     );

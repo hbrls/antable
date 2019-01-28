@@ -5,14 +5,6 @@ const version = process.env.VERSION || require('../package.json').version;
 const banner = '/*! @lattebank/atable v' + version + ' (c) 2017-present */';
 
 const builds = {
-  'atable': {
-    input: path.resolve(__dirname, '../src/atable.js'),
-    output: path.resolve(__dirname, '../dist/atable.js'),
-    external: [
-    ],
-    format: 'cjs',
-    banner,
-  },
   'ATable': {
     input: path.resolve(__dirname, '../src/ATable.jsx'),
     output: path.resolve(__dirname, '../dist/ATable.common.js'),

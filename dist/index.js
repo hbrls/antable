@@ -1,5 +1,5 @@
 var ATable = require('./ATable.common.js');
-var atable = require('./atable.js');
+var atable = {};
 
 
 atable.ATable = ATable;

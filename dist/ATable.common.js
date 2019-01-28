@@ -1,4 +1,4 @@
-/*! @lattebank/atable v0.1.2 (c) 2017-present */
+/*! @lattebank/atable v0.2.0 (c) 2017-present */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -7,7 +7,7 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var reactRouter = require('react-router');
 var reactRedux = require('react-redux');
-var routerRedux = _interopDefault(require('react-router-redux'));
+var reactRouterRedux = require('react-router-redux');
 var Table = _interopDefault(require('antd/lib/table'));
 var Input = _interopDefault(require('antd/lib/input'));
 
@@ -462,7 +462,7 @@ var ATable = (function (Component$$1) {
 
     var location = { pathname: pathname, query: query };
 
-    this.props.dispatch(routerRedux.push(location));
+    this.props.dispatch(reactRouterRedux.push(location));
   };
 
   ATable.prototype.renderSearchBar = function renderSearchBar () {
