@@ -86,6 +86,7 @@ export default function translate(props) {
   return {
     dataSource,
     columns,
+    pageSize: parseInt(props.pageSize, 10) || 10,
     searchColumns,
     fields,
     _query,

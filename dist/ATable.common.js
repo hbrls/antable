@@ -1,4 +1,4 @@
-/*! @lattebank/atable v0.1.1 (c) 2017-present */
+/*! @lattebank/atable v0.1.2 (c) 2017-present */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -161,6 +161,7 @@ function translate(props) {
   return {
     dataSource: dataSource,
     columns: columns,
+    pageSize: parseInt(props.pageSize, 10) || 10,
     searchColumns: searchColumns,
     fields: fields,
     _query: _query,
