@@ -3,7 +3,7 @@ import Query from '../model/Query.js';
 
 export default function translate(props) {
   let dataSource = props.dataSource.toJS ? props.dataSource.toJS() : props.dataSource;
-  let { columns } = props;
+  let { columns, paginationPosition } = props;
 
   const searchColumns = columns.filter(c => c.search === 'string').map(c => c);
 
@@ -87,6 +87,7 @@ export default function translate(props) {
     dataSource,
     columns,
     pageSize: parseInt(props.pageSize, 10) || 10,
+    paginationPosition,
     searchColumns,
     fields,
     _query,
