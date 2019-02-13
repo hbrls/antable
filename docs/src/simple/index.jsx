@@ -46,6 +46,7 @@ const routerAdapter = {
   isActive: () => {
     console.log('index.routerAdapter.isActive');
   },
+  location: window.location,
 };
 
 

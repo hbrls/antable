@@ -20,8 +20,8 @@ function getPrettyPlaceholder(columns) {
 function ClearIcon(props) {
   const style = {
     position: 'absolute',
-    top: 8,
-    right: 28,
+    top: 10,
+    right: 55,
     zIndex: 1,
     fontSize: 12,
     color: 'rgba(0, 0, 0, 0.15)',
@@ -48,7 +48,7 @@ export default class SearchBar extends Component {
   }
 
   clear() {
-    const input = this.textInput.input.refs.input;
+    const input = this.textInput.input.input;
     input.value = '';
     this.props.search('');
   }
@@ -58,7 +58,7 @@ export default class SearchBar extends Component {
 
     return (
       <div className="ant-table-searchbar" onMouseEnter={() => this.hover(true)} onMouseLeave={() => this.hover(false)}>
-        <Search placeholder={placeholder} defaultValue={this.props.keyword} style={{ width: 240 }} onSearch={this.props.search} ref={(input) => { this.textInput = input; }} />
+        <Search enterButton placeholder={placeholder} defaultValue={this.props.keyword} style={{ width: 240 }} onSearch={this.props.search} ref={(input) => { this.textInput = input; }} />
         {this.state.hover && <ClearIcon onClick={this.clear} />}
       </div>
     );
