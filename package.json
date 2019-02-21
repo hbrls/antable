@@ -1,6 +1,6 @@
 {
   "name": "@lattebank/atable",
-  "version": "0.1.2",
+  "version": "3.0.1",
   "description": "another table",
   "main": "dist/index.js",
   "scripts": {
@@ -11,17 +11,17 @@
   "author": "徐帅哲<xushuaizhe@lattebank.com>",
   "license": "MIT",
   "peerDependencies": {
-    "antd": "~2",
+    "antd": "~3",
     "immutable": "~3",
-    "react": "~15",
-    "react-dom": "~15",
+    "react": "~16",
+    "react-dom": "~16",
     "react-router": "~3",
     "react-router-redux": "~4",
     "redux": "~3",
     "react-redux": "~5"
   },
   "devDependencies": {
-    "antd": "2.12.6",
+    "antd": "3.3.3",
     "assets-webpack-plugin": "3.5.1",
     "axios": "0.16.2",
     "babel-core": "6.24.1",
@@ -41,8 +41,8 @@
     "eslint-plugin-react": "6.10.3",
     "extract-text-webpack-plugin": "2.1.0",
     "immutable": "3.8.1",
-    "react": "15.4.2",
-    "react-dom": "15.4.2",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
     "react-redux": "5.0.7",
     "react-router": "3.0.5",
     "react-router-redux": "4.0.8",

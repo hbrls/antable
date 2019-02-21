@@ -197,7 +197,7 @@ class ATable extends Component {
   }
 
   renderTable() {
-    const { pageSize, columns } = this.state;
+    const { pageSize, paginationPosition, columns } = this.state;
     const { page } = this.getNextQuery();
 
     let props = Object.assign({}, this.props);
@@ -212,6 +212,7 @@ class ATable extends Component {
     // ** rc-pagination
     if (props.pagination) {
       const pagination = {
+        position: paginationPosition,
         current: page,
         total: props.controlled ? props.controlled.total : dataSource.length,
         pageSize,
@@ -239,6 +240,7 @@ ATable.defaultProps = {
   controlled: false,
   pagination: true,
   pageSize: 10,
+  paginationPosition: 'bottom',
   size: 'middle',
   id: '_atable',
 };
@@ -248,7 +250,7 @@ ATable.defaultProps = {
 ATable.parseQuery = function (qs = '') {
   const [id, query] = qs.split('=');
   return new Query(id, query);
-}
+};
 
 ATable.nextQuery = function (form) {
   const sq = new Query();
