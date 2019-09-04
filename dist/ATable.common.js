@@ -1,4 +1,4 @@
-/*! @lattebank/atable v0.1.2 (c) 2017-present */
+/*! @lattebank/atable v3.0.1 (c) 2017-present */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -79,6 +79,7 @@ Query.prototype.next = function () {
 function translate(props) {
   var dataSource = props.dataSource.toJS ? props.dataSource.toJS() : props.dataSource;
   var columns = props.columns;
+  var paginationPosition = props.paginationPosition;
 
   var searchColumns = columns.filter(function (c) { return c.search === 'string'; }).map(function (c) { return c; });
 
@@ -162,6 +163,7 @@ function translate(props) {
     dataSource: dataSource,
     columns: columns,
     pageSize: parseInt(props.pageSize, 10) || 10,
+    paginationPosition: paginationPosition,
     searchColumns: searchColumns,
     fields: fields,
     _query: _query,
@@ -220,8 +222,8 @@ function getPrettyPlaceholder(columns) {
 function ClearIcon(props) {
   var style = {
     position: 'absolute',
-    top: 8,
-    right: 28,
+    top: 10,
+    right: 55,
     zIndex: 1,
     fontSize: 12,
     color: 'rgba(0, 0, 0, 0.15)',
@@ -252,7 +254,7 @@ var SearchBar = (function (Component$$1) {
   };
 
   SearchBar.prototype.clear = function clear () {
-    var input = this.textInput.input.refs.input;
+    var input = this.textInput.input.input;
     input.value = '';
     this.props.search('');
   };
@@ -265,7 +267,7 @@ var SearchBar = (function (Component$$1) {
 
     return (
       React__default.createElement( 'div', { className: "ant-table-searchbar", onMouseEnter: function () { return this$1.hover(true); }, onMouseLeave: function () { return this$1.hover(false); } },
-        React__default.createElement( Search, { placeholder: placeholder, defaultValue: this.props.keyword, style: { width: 240 }, onSearch: this.props.search, ref: function (input) { this$1.textInput = input; } }),
+        React__default.createElement( Search, { enterButton: true, placeholder: placeholder, defaultValue: this.props.keyword, style: { width: 240 }, onSearch: this.props.search, ref: function (input) { this$1.textInput = input; } }),
         this.state.hover && React__default.createElement( ClearIcon, { onClick: this.clear })
       )
     );
@@ -486,6 +488,7 @@ var ATable = (function (Component$$1) {
   ATable.prototype.renderTable = function renderTable () {
     var ref = this.state;
     var pageSize = ref.pageSize;
+    var paginationPosition = ref.paginationPosition;
     var columns = ref.columns;
     var ref$1 = this.getNextQuery();
     var page = ref$1.page;
@@ -502,6 +505,7 @@ var ATable = (function (Component$$1) {
     // ** rc-pagination
     if (props.pagination) {
       var pagination = {
+        position: paginationPosition,
         current: page,
         total: props.controlled ? props.controlled.total : dataSource.length,
         pageSize: pageSize,
@@ -531,6 +535,7 @@ ATable.defaultProps = {
   controlled: false,
   pagination: true,
   pageSize: 10,
+  paginationPosition: 'bottom',
   size: 'middle',
   id: '_atable',
 };
